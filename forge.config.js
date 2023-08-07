@@ -27,4 +27,17 @@ module.exports = {
       config: {},
     },
   ],
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'Kejax',
+          name: 'EDDB-Client'
+        },
+        prerelease: true,
+        draft: false
+      }
+    }
+  ],
 };
