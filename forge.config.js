@@ -19,7 +19,7 @@ module.exports = {
     {
       name: '@electron-forge/maker-rpm',
       config: {},
-    },
+    }
   ],
   plugins: [
     {
@@ -35,7 +35,7 @@ module.exports = {
           owner: 'Kejax',
           name: 'EDDB-Client'
         },
-        prerelease: true,
+        prerelease: false,
         draft: false
       }
     }
