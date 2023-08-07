@@ -1,11 +1,11 @@
 {
   "name": "eddb",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "eddb",
   "main": "index.js",
   "repository": {
     "type": "url",
-    "url": "https://github.com/Kejax/EDDB-Client"
+    "url": "https://github.com/Kejax/EDDB-Client.git"
   },
   "scripts": {
     "start": "electron-forge start",
