@@ -40,7 +40,7 @@ module.exports = {
       config: {
         repository: {
           owner: 'Kejax',
-          name: 'EDDB-Client'
+          name: 'ED-Squadrone-Tracker'
         },
         prerelease: true,
         draft: true
