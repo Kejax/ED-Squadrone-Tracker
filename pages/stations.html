@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <!-- https://edassets.org/#/elitedangerouslogos -->
+  <link rel="stylesheet" href="style.css">
+  <title>Elite Info</title>
+</head>
+
+<body>
+
+  <div class="preloader">
+    <video autoplay loop muted>
+      <source src="images/preloader.webm" type="video/webm">
+    </video>
+  </div>
+  <header>
+
+    <div id="logo">
+      <li><a href="index.html"><img src="images/edinfo.png" alt="https://placehold.co/128x32"></a></li>
+    </div>
+
+    <nav>
+      <ul>
+        <div id="navbar-right">
+          <a href="stations.html">
+            <li><img title="Stations" src="https://edassets.org/static/img/stations/Coriolis.svg"></li>
+          </a>
+          <a href="#">
+            <li><img src="https://edassets.org/static/img/materials/material.svg"></li>
+          </a>
+          <a href="#">
+            <li><img src="https://edassets.org/static/img/materials/material.svg"></li>
+          </a>
+          <a id="login" href="login.html">
+            <li>Login</li>
+          </a>
+          <a id="sign-up" href="sign-up.html">
+            <li>Sign up</li>
+          </a>
+        </div>
+
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <div class="directory">
+      <div class="directory-content">
+        <a href="index.html">Elite</a> <i class='fas fa-angle-right'></i> <a href="">Stations</a>
+        <input id="searchbar" type="text" onkeydown="searchStations(event)" placeholder="&#xF002; Search"
+          style="font-family:Arial, FontAwesome">
+      </div>
+    </div>
+
+
+
+
+</body>
+
+</html>
+
+
+<div class="stations-container">
+  <h1><i class='fas fa-angle-right'></i> Stations</h1>
+  <table id="table">
+    <thead>
+      <tr>
+        <th>Station</th>
+        <th>Star System</th>
+        <th>Allegiance</th>
+        <th>Government</th>
+        <th>Economy</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script id="stations-api" src="js/stations.js"></script>
+
+
+
+
+  <script>
+    // function myFunction() {
+    //   // Declare variables
+    //   var input, filter, table, tr, td, i, txtValue;
+    //   input = document.getElementById("searchbar");
+    //   filter = input.value.toUpperCase();
+    //   table = document.getElementById("table");
+    //   tr = table.getElementsByTagName("tr");
+
+    //   // Loop through all table rows, and hide those who don't match the search query
+    //   for (i = 0; i < tr.length; i++) {
+    //     td = tr[i].getElementsByTagName("td")[0];
+    //     if (td) {
+    //       txtValue = td.textContent || td.innerText;
+    //       if (txtValue.toUpperCase().indexOf(filter) > -1) {
+    //         tr[i].style.display = "";
+    //       } else {
+    //         tr[i].style.display = "none";
+    //       }
+    //     }
+    //   }
+    // }
+  </script>
+
+
+</div>
+</main>
+<script id="preloader-js">
+  var loader = document.querySelector(".preloader");
+
+  window.addEventListener("load", function () {
+    loader.style.display = "none";
+  });
+</script>
+</body>
+
+</html>

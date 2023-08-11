@@ -1,8 +1,9 @@
 {
-  "name": "eddb",
+  "name": "ed-squadrone-tracker",
+  "productName": "ED Squadrone Tracker",
   "version": "0.0.2",
-  "description": "eddb",
-  "main": "index.js",
+  "description": "CMDR Tracker for Elite Dangerous",
+  "main": "main.js",
   "repository": {
     "type": "url",
     "url": "https://github.com/Kejax/EDDB-Client.git"
@@ -28,8 +29,10 @@
     "electron": "^25.4.0"
   },
   "dependencies": {
+    "chokidar": "^3.5.3",
     "electron-squirrel-startup": "^1.0.0",
     "jquery": "^3.7.0",
+    "tail": "^2.2.6",
     "update-electron-app": "^2.0.1"
   }
 }

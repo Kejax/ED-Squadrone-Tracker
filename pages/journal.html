@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <!-- https://edassets.org/#/elitedangerouslogos -->
+  <link rel="stylesheet" href="style.css">
+  <title>Elite Info</title>
+</head>
+
+<body>
+
+  <div class="preloader">
+    <video autoplay loop muted>
+      <source src="images/preloader.webm" type="video/webm">
+    </video>
+  </div>
+  <header>
+
+    <div id="logo">
+      <li><a href="index.html"><img src="images/edinfo.png" alt="https://placehold.co/128x32"></a></li>
+    </div>
+
+    <nav>
+      <ul>
+        <div id="navbar-right">
+          <a href="stations.html">
+            <li><img title="Stations" src="https://edassets.org/static/img/stations/Coriolis.svg"></li>
+          </a>
+          <a href="#">
+            <li><img src="https://edassets.org/static/img/materials/material.svg"></li>
+          </a>
+          <a href="#">
+            <li><img src="https://edassets.org/static/img/materials/material.svg"></li>
+          </a>
+          <a id="login" href="login.html">
+            <li>Login</li>
+          </a>
+          <a id="sign-up" href="sign-up.html">
+            <li>Sign up</li>
+          </a>
+        </div>
+
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <div class="directory">
+      <div class="directory-content">
+        <a href="index.html">Elite</a> <i class='fas fa-angle-right'></i> <a href="">Journal Events</a>
+        <input id="searchbar" type="text" onkeydown="searchStations(event)" placeholder="&#xF002; Search"
+          style="font-family:Arial, FontAwesome">
+      </div>
+    </div>
+
+    <div class="stations-container", id="events">
+
+    </div>
+
+
+</body>
+
+</html>
+
+<script>
+
+    window.events.handleJournalEvent((_event, data) => {
+        
+        con = document.getElementById('events');
+        
+        span = document.createElement('span');
+        span.style.color = "white";
+        span.textContent = JSON.stringify(data);
+        con.appendChild(span);
+        con.appendChild(document.createElement('br'));
+        con.appendChild(document.createElement('br'))
+    })
+
+</script>
+
+
+</div>
+</main>
+<script id="preloader-js">
+  var loader = document.querySelector(".preloader");
+
+  window.addEventListener("load", function () {
+    loader.style.display = "none";
+  });
+</script>
+</body>
+
+</html>

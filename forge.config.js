@@ -1,12 +1,19 @@
 module.exports = {
   packagerConfig: {
     asar: true,
+    executableName: 'ed-squadrone-tracker',
   },
   rebuildConfig: {},
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
-      config: {},
+      config: {
+        exe: 'ed-squadrone-tracker.exe',
+        setupExe: 'ED-Squadrone-Tracker-Setup.exe',
+        title: 'ED Squadrone Tracker',
+        //name: 'ED: Squadrone Tracker'
+        //noMsi: false,
+      },
     },
     {
       name: '@electron-forge/maker-zip',
@@ -35,8 +42,8 @@ module.exports = {
           owner: 'Kejax',
           name: 'EDDB-Client'
         },
-        prerelease: false,
-        draft: false
+        prerelease: true,
+        draft: true
       }
     }
   ],

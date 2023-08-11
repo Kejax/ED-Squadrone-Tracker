@@ -1,0 +1,218 @@
+/* Universal CSS */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  background-color: rgb(41, 41, 41);
+  overflow-x: hidden;
+}
+
+/* Preloader */
+
+.preloader {
+  height: 100vh;
+  width: 100%;
+  background: #000;
+  position: fixed;
+  z-index: 100;
+  margin-top: 0;
+}
+
+.preloader video {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+/* Navbar */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  margin: 10px;
+}
+
+
+
+header nav ul a#login,
+a#sign-up {
+  border: 1px solid #AE4A06;
+  width: 60px;
+  text-align: center;
+  border-radius: 20px 20px 20px 20px;
+}
+
+header nav ul a#sign-up {
+  background-color: #AE4A06;
+}
+
+header nav ul a {
+  display: inline-block;
+  padding: 10px;
+}
+
+header nav ul li a {
+  padding: 10px;
+}
+
+header nav ul a img, header nav ul a svg {
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+}
+
+header nav ul a:hover {
+  background-color: #AE4A06;
+}
+
+header nav ul a {
+  color: #fff;
+  text-decoration: none;
+  list-style: none;
+}
+
+/* Directory */
+
+.directory {
+  background-color: #434343;
+  padding: 10px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0px 6px 8px -2px rgba(0, 0, 0, 0.22);
+}
+
+.directory-content a {
+  color: #ea5f03;
+  margin: 10px;
+}
+
+.directory-content {
+  margin-left: 50px;
+}
+
+.directory i {
+  color: #ea5f03;
+}
+
+/* Stations Table */
+
+.stations-container table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  color: #fff;
+  margin-top: 2vh;
+}
+
+.stations-container {
+  width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Tabelle */
+
+
+
+.stations-container td,
+th {
+  border: 1px solid #434343;
+  text-align: left;
+  padding: 8px;
+}
+
+.stations-container tr th {
+  color: #ea5f03;
+}
+
+.stations-container tr th:hover {
+  cursor: pointer;
+  background-color: #3d3d3d;
+}
+
+tr:nth-child(even) {
+  background-color: #1a1a1a;
+}
+
+tr:nth-child(odd) {
+  background-color: rgb(46, 46, 46);
+}
+
+.stations-container h1 {
+  color: #fff;
+  margin: 20px;
+}
+
+/* Searchbar */
+
+.directory input {
+  background-color: rgb(46, 46, 46);
+  border: none;
+  padding: 2px;
+  position: relative;
+  left: 10%;
+}
+
+input,
+select,
+textarea {
+  color: #fff;
+}
+
+textarea:focus,
+input:focus {
+  color: #fff;
+}
+
+
+
+/* Frontpage News */
+
+.news {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px;
+
+}
+
+.news p,
+h2 {
+  color: #fff;
+  margin: 5px;
+}
+
+
+.news-1 {
+  width: 30vw;
+  height: 60vh;
+  background-color: #3d3d3d;
+  box-shadow: 0px 6px 8px -2px rgba(0, 0, 0, 0.22);
+}
+
+.news-2 {
+  width: 30vw;
+  height: 60vh;
+  background-color: #3d3d3d;
+  box-shadow: 0px 6px 8px -2px rgba(0, 0, 0, 0.22);
+}
+
+.news-3 {
+  width: 30vw;
+  height: 60vh;
+  background-color: #3d3d3d;
+  box-shadow: 0px 6px 8px -2px rgba(0, 0, 0, 0.22);
+}
