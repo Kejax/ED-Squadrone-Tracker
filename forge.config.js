@@ -2,6 +2,12 @@ module.exports = {
   packagerConfig: {
     asar: true,
     executableName: 'ed-squadrone-tracker',
+    icon: 'icon.ico',
+    extraResource: [
+      'icon.ico',
+      'tray.png',
+      'tray_icon.png'
+    ]
   },
   rebuildConfig: {},
   makers: [
@@ -10,9 +16,8 @@ module.exports = {
       config: {
         exe: 'ed-squadrone-tracker.exe',
         setupExe: 'ED-Squadrone-Tracker-Setup.exe',
+        setupIcon: 'icon.ico',
         title: 'ED Squadrone Tracker',
-        //name: 'ED: Squadrone Tracker'
-        //noMsi: false,
       },
     },
     {

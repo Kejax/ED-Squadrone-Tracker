@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <!-- https://edassets.org/#/elitedangerouslogos -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/station_information.css">
+    <title>{Station Name}</title>
+</head>
+
+<body>
+
+    <div class="preloader" style="display: none;">
+        <video autoplay="" loop="" muted="">
+            <source src="images/preloader.webm" type="video/webm">
+        </video>
+    </div>
+
+    <header>
+
+        <div id="logo">
+            <li><a href="/index.html"><img src="/images/edinfo.png" alt="https://placehold.co/128x32"></a></li>
+        </div>
+        <nav>
+            <ul>
+                <div id="navbar-right">
+                    <a href="stations.html">
+                        <li><img title="Stations" src="https://edassets.org/static/img/stations/Ocellus_sm.svg"></li>
+                    </a>
+                    <a title="License" href="license.html">
+                        <li><img src="https://edassets.org/static/img/power-ethos/Social.svg"></li>
+                    </a>
+                    <a href="#">
+                        <li><img src="https://edassets.org/static/img/materials/material.svg"></li>
+                    </a>
+                    <a id="login" href="accounting/login.html">
+                        <li>Login</li>
+                    </a>
+                    <a id="sign-up" href="accounting/sign-up.html">
+                        <li>Sign up</li>
+                    </a>
+                </div>
+
+            </ul>
+        </nav>
+    </header>
+    <div class="directory">
+        <div class="directory-content">
+            <a href="/">Elite</a> <i class="fas fa-angle-right"></i> <a href="/stations.html">Stations</a> <i class="fas fa-angle-right"></i> <a href="/stations/station_name.html">{Station Name}</a>
+        </div>
+    </div>
+
+
+    <main>
+        <div class="container-stations">
+            <div class="inner">
+                <div class="inner-left">
+                    <h2 class="inner-h2"><a href="">{Station Name}</a> - <a href="">{System Name}</a></h2>
+
+                        <div class="cats">
+                            <div class="starsystem">
+                                <p class="cats-question">Star System</p>
+                                <p class="cats-answer">VALUE</p>
+                            </div>
+                            <div class="stationdistance">
+                                <p class="cats-question">Staton Distance</p>
+                                <p class="cats-answer">VALUE</p>
+                            </div>
+                            <div class="landingpad">
+                                <p class="cats-question">Landing Pad</p>
+                                <p class="cats-answer">VALUE</p>
+                            </div>
+                            <div class="stationtype">
+                                <p class="cats-question">Station Type</p>
+                                <p class="cats-answer">VALUE</p>
+                            </div>
+                            <div class="state">
+                                <p class="cats-question">State</p>
+                                <p class="cats-answer">VALUE</p>
+                            </div>
+                        </div>
+                    
+                    <div class="station-chips">
+                        <span class="station-span">Outfitting</span>
+                        <span class="station-span">Rearm</span>
+                        <span class="station-span">Repair</span>
+                        <span class="station-span">Shipyard</span>
+                        <span class="station-span">Black market</span>
+                        <span class="station-span">Contacts</span>
+                        <span class="station-span">Search and rescue</span>
+                        <span class="station-span">Universal Cartographics</span>
+                        <span class="station-span">Vendors</span>
+                        <span class="station-span">Workshop</span>
+                    </div>
+
+                        <div class="vl"></div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        var loader = document.querySelector(".preloader");
+
+        window.addEventListener("load", function () {
+            loader.style.display = "none";
+        });
+    </script>
+
+
+</body></html>
