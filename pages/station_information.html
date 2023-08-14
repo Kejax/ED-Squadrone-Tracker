@@ -14,7 +14,7 @@
 
 <body>
 
-    <div class="preloader" style="display: none;">
+    <div class="preloader">
         <video autoplay="" loop="" muted="">
             <source src="images/preloader.webm" type="video/webm">
         </video>
@@ -23,7 +23,7 @@
     <header>
 
         <div id="logo">
-            <li><a href="/index.html"><img src="/images/edinfo.png" alt="https://placehold.co/128x32"></a></li>
+            <li><a href="index.html"><img src="images/edinfo.png" alt="https://placehold.co/128x32"></a></li>
         </div>
         <nav>
             <ul>
@@ -50,7 +50,7 @@
     </header>
     <div class="directory">
         <div class="directory-content">
-            <a href="/">Elite</a> <i class="fas fa-angle-right"></i> <a href="/stations.html">Stations</a> <i class="fas fa-angle-right"></i> <a href="/stations/station_name.html">{Station Name}</a>
+            <a href="index.html">Elite</a> <i class="fas fa-angle-right"></i> <a href="stations.html">Stations</a> <i class="fas fa-angle-right"></i> <a href="#">{Station Name}</a>
         </div>
     </div>
 
@@ -59,16 +59,16 @@
         <div class="container-stations">
             <div class="inner">
                 <div class="inner-left">
-                    <h2 class="inner-h2"><a href="">{Station Name}</a> - <a href="">{System Name}</a></h2>
+                    <h2 class="inner-h2"><a href="" data-value="name">{Station Name}</a> - <a href="" data-value="system_name">{System Name}</a></h2>
 
                         <div class="cats">
                             <div class="starsystem">
                                 <p class="cats-question">Star System</p>
-                                <p class="cats-answer">VALUE</p>
+                                <p class="cats-answer" data-value="system_name">VALUE</p>
                             </div>
                             <div class="stationdistance">
                                 <p class="cats-question">Staton Distance</p>
-                                <p class="cats-answer">VALUE</p>
+                                <p class="cats-answer" data-value="distance_to_arrival">VALUE</p>
                             </div>
                             <div class="landingpad">
                                 <p class="cats-question">Landing Pad</p>
@@ -76,11 +76,11 @@
                             </div>
                             <div class="stationtype">
                                 <p class="cats-question">Station Type</p>
-                                <p class="cats-answer">VALUE</p>
+                                <p class="cats-answer" data-value="type">VALUE</p>
                             </div>
                             <div class="state">
                                 <p class="cats-question">State</p>
-                                <p class="cats-answer">VALUE</p>
+                                <p class="cats-answer" data-value="primary_economy">VALUE</p>
                             </div>
                         </div>
                     
@@ -106,11 +106,9 @@
 
     <script>
         var loader = document.querySelector(".preloader");
-
-        window.addEventListener("load", function () {
-            loader.style.display = "none";
-        });
     </script>
+
+    <script src="js/station_information.js"></script>
 
 
 </body></html>

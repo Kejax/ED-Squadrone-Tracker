@@ -1,0 +1,92 @@
+.container-stations {
+    width: 65vw;
+    height: 85vh;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px blue solid;
+}
+
+.container-stations .inner {
+    width: 100%;
+    height: 40vh;
+    background: url(../images/stations-wrapper-bg.jpg) no-repeat;
+    background-size: cover;
+    border: 1px red solid;
+}
+
+.container-stations .inner-left {
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+.container-stations .inner h2 {
+    color: #fff;
+    font-size: 20px;
+    margin: 15px;
+}
+
+.container-stations .inner h2 a {
+    color: #ea5f03;
+    text-decoration: none;
+}
+
+.container-stations .inner h2 a:hover {
+    text-decoration: underline;
+}
+
+.inner {
+    position: relative;
+}
+
+.inner .cats {  
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin: 20px;
+}
+
+.cats p {
+    color: #fefefe;
+    margin: 5px;
+    text-transform: uppercase;
+    font-size: 10pt;
+}
+
+.cats-question {
+    /*border: 1px solid red;*/
+    float: left;
+}
+
+.cats-answer {
+    /*border: 1px dotted blue;*/
+    float: right;
+}
+
+.vl {
+    border-left: 2px dotted gray;
+    height: 80%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.station-chips {
+    color: #dfdedc;
+    display: flex;
+    justify-content: center; /* Zentriert die Spans horizontal */
+    flex-wrap: wrap; /* Sorgt dafür, dass die Spans bei Bedarf umbrechen */
+}
+
+.station-span {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin: 0 2.5px 5px 2.5px; /* Abstand von 5px unten und 2.5px seitlich */
+}
+
+.station-span:hover {
+    cursor: pointer;
+}

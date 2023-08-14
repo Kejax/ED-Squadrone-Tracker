@@ -1,14 +1,27 @@
 
 function loadStationContent() {
 
-    const query = URLSearchParams(window.location.search);
+    const loader = document.querySelector('.preloader');
+
+    const query = new URLSearchParams(window.location.search);
 
     fetch(`https://spansh.co.uk/api/station/${query.get('marketId')}`)
     .then((response) => response.json())
     .then((data) => {
         
-        stationNames = document.querySelector("[data-value=stationName]") 
+        targets = document.querySelectorAll('[data-value]');
+
+        targets.forEach(element => {
+            key = element.getAttribute('data-value');
+            console.log(key)
+            console.log(data.record[key]);
+            element.textContent = data.record[key];
+        });
+
+        loader.style.display = 'none';
 
     })
 
 }
+
+loadStationContent()

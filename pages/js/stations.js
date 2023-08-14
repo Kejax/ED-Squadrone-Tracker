@@ -21,7 +21,7 @@ function searchStations(event) {// Make a GET request using the Fetch API
               
               // Station Name
               let nameCell = document.createElement('td');
-              nameCell.textContent = record.name;
+              nameCell.innerHTML = `<a href="station_information.html?marketId=${record.market_id}">${record.name}</a>`;
               row.appendChild(nameCell);
 
               // System Name
