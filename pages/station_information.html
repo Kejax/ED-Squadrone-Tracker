@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <!-- https://edassets.org/#/elitedangerouslogos -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/station_information.css">
@@ -15,7 +15,7 @@
 <body>
 
     <div class="preloader">
-        <video autoplay="" loop="" muted="">
+        <video autoplay loop muted>
             <source src="images/preloader.webm" type="video/webm">
         </video>
     </div>
@@ -23,7 +23,7 @@
     <header>
 
         <div id="logo">
-            <li><a href="index.html"><img src="images/edinfo.png" alt="https://placehold.co/128x32"></a></li>
+            <li><a href="index.html"><img src="/images/edinfo.png" alt="https://placehold.co/128x32"></a></li>
         </div>
         <nav>
             <ul>
@@ -50,7 +50,8 @@
     </header>
     <div class="directory">
         <div class="directory-content">
-            <a href="index.html">Elite</a> <i class="fas fa-angle-right"></i> <a href="stations.html">Stations</a> <i class="fas fa-angle-right"></i> <a href="#">{Station Name}</a>
+            <a href="/">Elite</a> <i class='fas fa-angle-right'></i> <a href="/stations.html">Stations</a> <i
+                class='fas fa-angle-right'></i> <a href="/stations/station_name.html">{Station Name}</a>
         </div>
     </div>
 
@@ -59,16 +60,16 @@
         <div class="container-stations">
             <div class="inner">
                 <div class="inner-left">
-                    <h2 class="inner-h2"><a href="" data-value="name">{Station Name}</a> - <a href="" data-value="system_name">{System Name}</a></h2>
+                    <h2 class="inner-h2"><a href="">{Station Name}</a> - <a href="">{System Name}</a></h1>
 
                         <div class="cats">
                             <div class="starsystem">
                                 <p class="cats-question">Star System</p>
-                                <p class="cats-answer" data-value="system_name">VALUE</p>
+                                <p class="cats-answer">VALUE</p>
                             </div>
                             <div class="stationdistance">
                                 <p class="cats-question">Staton Distance</p>
-                                <p class="cats-answer" data-value="distance_to_arrival">VALUE</p>
+                                <p class="cats-answer">VALUE</p>
                             </div>
                             <div class="landingpad">
                                 <p class="cats-question">Landing Pad</p>
@@ -76,11 +77,11 @@
                             </div>
                             <div class="stationtype">
                                 <p class="cats-question">Station Type</p>
-                                <p class="cats-answer" data-value="type">VALUE</p>
+                                <p class="cats-answer">VALUE</p>
                             </div>
                             <div class="state">
                                 <p class="cats-question">State</p>
-                                <p class="cats-answer" data-value="primary_economy">VALUE</p>
+                                <p class="cats-answer">VALUE</p>
                             </div>
                         </div>
                     
@@ -104,11 +105,7 @@
 
     </main>
 
-    <script>
-        var loader = document.querySelector(".preloader");
-    </script>
+    <script src="js/preloader.js"></script>
+</body>
 
-    <script src="js/station_information.js"></script>
-
-
-</body></html>
+</html>
