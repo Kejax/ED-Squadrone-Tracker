@@ -8,7 +8,7 @@
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
   <!-- https://edassets.org/#/elitedangerouslogos -->
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/stations.css">
+  <link rel="stylesheet" href="css/squadrone_overview.css">
   <title>Elite Info</title>
 </head>
 
@@ -19,6 +19,7 @@
       <source src="images/preloader.webm" type="video/webm">
     </video>
   </div>
+
   <header>
 
     <div id="logo">
@@ -56,43 +57,55 @@
 
     <div class="directory">
       <div class="directory-content">
-        <a href="index.html">Elite</a> <i class='fas fa-angle-right'></i> <a href="">Systems</a>
+        <a href="index.html">Elite</a> <i class='fas fa-angle-right'></i> <a href="squadrone_overview.html">Squadrone
+          Overview</a>
+
       </div>
     </div>
 
+
+
+
+
     <div class="stations-container">
-      <h1><i class='fas fa-angle-right'></i> Systems</h1>
-      
+
+
+      <div class="arrow-wrapper">
+        <div class="icon-container">
+          <i class="fas fa-angle-right icon"></i>
+        </div>
+        <h1 class="title">Squadrone Overview</h1>
+      </div>
+
+
       <div class="search-container">
-        <input id="searchbar" type="text" onkeydown="searchStations(event)" placeholder="&#xF002; Search" style="font-family: Arial, FontAwesome">
+        <input id="searchbar" type="text" onkeydown="searchStations(event)" placeholder="&#xF002; Search"
+          style="font-family: Arial, FontAwesome">
       </div>
 
       <div class="table-container">
+
         <table id="table">
-            <thead>
+          <thead>
             <tr>
-                <th>Name</th>
-                <th>Economy</th>
-                <th>Government</th>
-                <th>Allegiance</th>
+              <th>CMDR</th>
+              <th>Rank</th>
+              <th>Status</th>
+              <th>Last Activity</th>
             </tr>
-            </thead>
-            <tbody></tbody>
+          </thead>
+          <tbody></tbody>
         </table>
       </div>
+
+
+
+
+
     </div>
+  </main>
 
-
-</body>
-
-</html>
-
-</div>
-</main>
-<script src="js/preloader.js"></script>
-
-<script src="js/systems.js"></script>
-
+  <script src="js/preloader.js"></script>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
-/* Stations Table */
+/* Site */
 
 .stations-container {
-    width: 80vw;
+    width: 60vw;
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -9,13 +9,17 @@
     align-items: flex-start;
 }
 
+h1 {
+    color: #fff;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
 /* Tabelle */
 
 .stations-container table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    margin-left: auto;
-    margin-right: auto;
     width: 100%;
     color: #fff;
 }
@@ -49,10 +53,6 @@ tr:nth-child(odd) {
     background-color: rgb(46, 46, 46);
 }
 
-.stations-container h1 {
-    color: #fff;
-    margin: 20px 0px 20px 0px;
-}
 
 
 
@@ -80,4 +80,29 @@ textarea {
 textarea:focus,
 input:focus {
     color: #fff;
+}
+
+
+/* Arrow Alignment */
+
+/* Arrow Wrapper Styles */
+.arrow-wrapper {
+    color: #fff;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    right: 30px;
+}
+
+
+.icon-container {
+    margin-right: 10px; /* Abstand zwischen Pfeil und Text */
+    font-size: 34px;
+}
+
+.title {
+    color: #fff;
+    margin: 0;
 }
