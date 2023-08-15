@@ -13,10 +13,31 @@ function loadStationContent() {
 
         targets.forEach(element => {
             key = element.getAttribute('data-value');
-            console.log(key)
-            console.log(data.record[key]);
+
             element.textContent = data.record[key];
+
+            console.log(key)
+
+            if (key == 'landingpad') {
+                console.log(data.record.has_large_pad)
+                if (data.record.has_large_pad) {
+                    element.textContent = 'L'
+                } else element.textContent = 'M'
+            }
         });
+
+
+        // Station chips
+        const stationChips = document.querySelector('.station-chips');
+
+        stationChips.innerHTML = '';
+
+        data.record.services.forEach(element => {
+            const span = document.createElement('span');
+            span.textContent = element.name;
+            span.classList.add('station-span');
+            stationChips.appendChild(span)
+        })
 
         loader.style.display = 'none';
 
