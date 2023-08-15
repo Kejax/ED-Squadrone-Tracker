@@ -29,18 +29,18 @@
       <ul>
         <div id="navbar-right">
           <a href="stations.html">
-            <li><img title="Stations" src="https://edassets.org/static/img/stations/Coriolis.svg"></li>
+            <li><img title="Stations" src="https://edassets.org/static/img/stations/Ocellus_sm.svg"></li>
           </a>
-          <a href="#">
-            <li><img src="https://edassets.org/static/img/materials/material.svg"></li>
+          <a title="License" href="license.html">
+            <li><img src="https://edassets.org/static/img/power-ethos/Social.svg"></li>
           </a>
-          <a href="#">
-            <li><img src="https://edassets.org/static/img/materials/material.svg"></li>
+          <a href="systems.html">
+            <li><img src="https://edassets.org/static/img/power-related/Expanding.svg"></li>
           </a>
-          <a id="login" href="login.html">
+          <a id="login" href="accounting/login.html">
             <li>Login</li>
           </a>
-          <a id="sign-up" href="sign-up.html">
+          <a id="sign-up" href="accounting/sign-up.html">
             <li>Sign up</li>
           </a>
         </div>
@@ -58,9 +58,13 @@
     </div>
 
     <div class="stations-container">
+      <h1><i class='fas fa-angle-right'></i> Systems</h1>
+      
+      <div class="search-container">
+        <input id="searchbar" type="text" onkeydown="searchStations(event)" placeholder="&#xF002; Search" style="font-family: Arial, FontAwesome">
+      </div>
 
-        <h1><i class='fas fa-angle-right'></i> Systems</h1> <input id="searchbar" type="text" onkeydown="searchSystems(event)" placeholder="&#xF002; Search"
-        style="font-family:Arial, FontAwesome">
+      <div class="table-container">
         <table id="table">
             <thead>
             <tr>
@@ -72,7 +76,7 @@
             </thead>
             <tbody></tbody>
         </table>
-
+      </div>
     </div>
 
 
