@@ -2,7 +2,7 @@
 const { app, Tray, Menu, nativeImage, BrowserWindow, ipcMain, Notification, MessageChannelMain, utilityProcess } = require('electron');
 const path = require('path');
 
-import settings from 'electron-settings';
+const { settings } = require('electron-settings')
 
 const os = require('os');
 const fs = require('fs');
@@ -12,6 +12,7 @@ const chokidar = require('chokidar');
 
 if (require('electron-squirrel-startup')) app.quit();
 
+// TODO maybe add own implementation of auto updating, with a custom update window
 require('update-electron-app')();
 
 const gotTheLock = app.requestSingleInstanceLock();
@@ -74,8 +75,6 @@ function loadJournal() {
 
             // Send the event to the frontend, whatever event occured
             win.webContents.send('journal-event', jsonData)
-
-            console.log(jsonData.event);
 
             // Handler if "Docked" event occured
             if (jsonData.event === "Docked") {
@@ -195,7 +194,7 @@ const createWindow = () => {
 }
 
 // App on ready listener, waits untill the app is ready
-if (gotTheLock && !updateAvailable) {
+if (gotTheLock) {
     app.on('ready', () => {
 
         // Sets if the files for events were found
