@@ -34,8 +34,8 @@
           <a title="License" href="license.html">
             <li><img src="https://edassets.org/static/img/power-ethos/Social.svg"></li>
           </a>
-          <a href="#">
-            <li><img src="https://edassets.org/static/img/materials/material.svg"></li>
+          <a href="systems.html">
+            <li><img src="https://edassets.org/static/img/power-related/Expanding.svg"></li>
           </a>
           <a id="login" href="accounting/login.html">
             <li>Login</li>
@@ -63,8 +63,14 @@
 
 
 
-<div class="stations-container">
-  <h1><i class='fas fa-angle-right'></i> Stations</h1> <input id="searchbar" type="text" onkeydown="searchStations(event)" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome">
+    <div class="stations-container">
+      <h1><i class='fas fa-angle-right'></i> Stations</h1>
+      
+      <div class="search-container">
+        <input id="searchbar" type="text" onkeydown="searchStations(event)" placeholder="&#xF002; Search" style="font-family: Arial, FontAwesome">
+      </div>
+
+      <div class="table-container">
   
   <table id="table">
     <thead>
@@ -78,6 +84,7 @@
     </thead>
     <tbody></tbody>
   </table>
+</div>
 
   <script src="js/stations.js" id="stations-api"></script>
 

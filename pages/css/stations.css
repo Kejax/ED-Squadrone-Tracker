@@ -1,24 +1,29 @@
 /* Stations Table */
 
-.stations-container table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    color: #fff;
-    margin-top: 2vh;
-}
+
 
 .stations-container {
     width: 80vw;
     margin-left: auto;
     margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 /* Tabelle */
 
+.stations-container table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%; /* Vollständige Breite der Tabelle */
+    color: #fff;
+}
 
+.table-container {
+    width: 100%; /* Vollständige Breite des Containers */
+    margin-top: 20px; /* Abstand zwischen Tabelle und Searchbar */
+}
 
 .stations-container td,
 th {
@@ -46,17 +51,24 @@ tr:nth-child(odd) {
 
 .stations-container h1 {
     color: #fff;
-    margin: 20px;
+    margin: 10px;
 }
 
-/* Searchbar */
 
-input {
+
+/* Searchbar */
+.search-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.search-container input {
     background-color: rgb(46, 46, 46);
     border: none;
     padding: 8px;
     width: 300px;
-    margin-left: 20px;
+    color: #fff;
+    font-family: Arial, FontAwesome;
 }
 
 input,
