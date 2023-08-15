@@ -1,7 +1,7 @@
 {
   "name": "ed-squadrone-tracker",
   "productName": "ED Squadrone Tracker",
-  "version": "0.0.2",
+  "version": "0.0.1-beta1",
   "description": "CMDR Tracker for Elite Dangerous",
   "main": "main.js",
   "repository": {
@@ -15,8 +15,8 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish"
   },
-  "author": "Kejax",
-  "license": "ISC",
+  "author": "ED Squadrone Tracker Team",
+  "license": "ICS",
   "devDependencies": {
     "@electron-forge/cli": "^6.2.1",
     "@electron-forge/maker-deb": "^6.2.1",
@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "chokidar": "^3.5.3",
+    "electron-settings": "^4.0.2",
     "electron-squirrel-startup": "^1.0.0",
     "jquery": "^3.7.0",
     "tail": "^2.2.6",

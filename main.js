@@ -2,6 +2,8 @@
 const { app, Tray, Menu, nativeImage, BrowserWindow, ipcMain, Notification, MessageChannelMain, utilityProcess } = require('electron');
 const path = require('path');
 
+import settings from 'electron-settings';
+
 const os = require('os');
 const fs = require('fs');
 
@@ -20,11 +22,12 @@ if (process.defaultApp) {
     if (process.argv.length >= 2) {
       app.setAsDefaultProtocolClient('ed-squadrone-tracker', process.execPath, [path.resolve(process.argv[1])])
     }
-  } else {
+} else {
     app.setAsDefaultProtocolClient('ed-squadrone-tracker')
-  }
+}
 
 // Checks if the App is the first/only instance of it
+// Also handles the opened protocol
 if (!gotTheLock) {
     app.quit()
 } else {
@@ -81,7 +84,7 @@ function loadJournal() {
                 // Send a notification about the docking
                 // TODO Implement "windows-notification-state" for checking if the notification would be visible
                 // TODO Implement "electron-windows-notifications" and "electron-windows-interactive-notifications" for better notifications
-                new Notification({
+                /*new Notification({
                     toastXml: `
                     <toast launch="ed-squadrone-tracker:action=station&amp;marketId=${jsonData.MarketID}" activationType="protocol">
                         <visual>
@@ -102,7 +105,7 @@ function loadJournal() {
                                 activationType="protocol"/>
                         </actions>
                     </toast>`
-                }).show()
+                }).show()*/
             }
 
         })
@@ -115,10 +118,11 @@ function loadJournal() {
     }
 }
 
-// This function is used to create a Utility Process which is being used to create a local webserver for Streamers
-// Streamers are able to add live updated data to their stream, like current ship, position, group, system, station, etc.
-// The webservers script can be found in streamserver.js
 function createWebServerProcess() {
+    // This function is used to create a Utility Process which is being used to create a local webserver for Streamers
+    // Streamers are able to add live updated data to their stream, like current ship, position, group, system, station, etc.
+    // The webservers script can be found in streamserver.js
+
     const { port1, port2 } = new MessageChannelMain()
     const child = utilityProcess.fork(path.join(__dirname, 'streamserver.js'))
 
@@ -160,7 +164,7 @@ app.setUserTasks([
 // Sets the app's about menu
 app.setAboutPanelOptions({
     applicationName: 'ED Squadrone Tracker',
-    applicationVersion: 'V0.0.2',
+    applicationVersion: 'V0.0.1-beta1',
     copyright: 'Copyright 2023 Kejax & Fliegevieh',
     website: 'https://github.com/Kejax/ED-Squadrone-Tracker'
 })
@@ -191,10 +195,8 @@ const createWindow = () => {
 }
 
 // App on ready listener, waits untill the app is ready
-if (gotTheLock) {
+if (gotTheLock && !updateAvailable) {
     app.on('ready', () => {
-
-        console.log('Ready');
 
         // Sets if the files for events were found
         ipcMain.on('journal-files-found', () => {return filesFound});
@@ -229,21 +231,6 @@ if (gotTheLock) {
 
         // Calls our function to create a window
         win = createWindow();
-
-        // MacOS functionality to create a window if none exists
-        app.on('activate', () => {
-            if (BrowserWindow.getAllWindows().length === 0) win = createWindow()
-        })
-
-        // Streaming Webserver
-        const webServer = createWebServerProcess();
-
-        webServer.on('message', (message) => {console.log(message)})
-
-        webServer.postMessage({ message: 'hello' })
-
-        // TODO Test/Debug area
-        
 
     })
 }
