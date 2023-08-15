@@ -1,23 +1,34 @@
 .container-stations {
     width: 65vw;
     height: 85vh;
+    margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
-    border: 1px blue solid;
+    /*border: 1px blue solid;*/
 }
 
 .container-stations .inner {
     width: 100%;
-    height: 40vh;
-    background: url(../images/stations-wrapper-bg.jpg) no-repeat;
-    background-size: cover;
-    border: 1px red solid;
+    height: auto;
+    background: #292e33;
+    /*border: 1px red solid;*/
+    display: flex;
+    align-items: stretch;
+    padding-bottom: 20px;
 }
+
+
 
 .container-stations .inner-left {
     width: 50%;
     height: 100%;
     float: left;
+}
+
+.container-stations .inner-right {
+    width: 50%;
+    height: 100%;
+    float: right;
 }
 
 .container-stations .inner h2 {
@@ -76,20 +87,24 @@
 .station-chips {
     color: #dfdedc;
     display: flex;
-    justify-content: center; /* Zentriert die Spans horizontal */
-    flex-wrap: wrap; /* Sorgt dafür, dass die Spans bei Bedarf umbrechen */
+    justify-content: center;
+    flex-wrap: wrap;
 }
+
 
 .station-span {
     border: 1px solid #ccc;
     border-radius: 10px;
     padding: 5px 10px;
-    margin: 0 2.5px 5px 2.5px; /* Abstand von 5px unten und 2.5px seitlich */
+    margin: 0 2.5px 5px 2.5px; 
 }
 
 .station-span:hover {
     cursor: pointer;
 }
+
+
+
 
 @media screen and (max-width: 767px) {
     .container-stations {
@@ -107,10 +122,9 @@
         font-size: 16px;
     }
 
-    /* Weitere Anpassungen nach Bedarf */
+
 }
 
-/* Mittlere und größere Bildschirme */
 @media screen and (min-width: 768px) {
     .inner-left {
         width: 60%;
@@ -121,5 +135,4 @@
         font-size: 20px;
     }
 
-    /* Weitere Anpassungen nach Bedarf */
 }
