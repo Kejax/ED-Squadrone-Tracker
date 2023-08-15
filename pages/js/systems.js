@@ -21,7 +21,7 @@ function searchSystems(event) {// Make a GET request using the Fetch API
               
               // Station Name
               let nameCell = document.createElement('td');
-              nameCell.innerHTML = `<a href="system_information.html?systemAddress=${record.market_id}">${record.name}</a>`;
+              nameCell.innerHTML = `<a href="system_information.html?systemAddress=${record.id64}">${record.name}</a>`;
               row.appendChild(nameCell);
 
               // Allegiance
