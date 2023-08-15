@@ -90,3 +90,36 @@
 .station-span:hover {
     cursor: pointer;
 }
+
+@media screen and (max-width: 767px) {
+    .container-stations {
+        width: 90vw;
+        margin: 0 auto;
+    }
+
+    .inner-left {
+        width: 100%;
+        float: none;
+        text-align: center;
+    }
+
+    .inner-h2 {
+        font-size: 16px;
+    }
+
+    /* Weitere Anpassungen nach Bedarf */
+}
+
+/* Mittlere und größere Bildschirme */
+@media screen and (min-width: 768px) {
+    .inner-left {
+        width: 60%;
+        float: left;
+    }
+
+    .inner-h2 {
+        font-size: 20px;
+    }
+
+    /* Weitere Anpassungen nach Bedarf */
+}

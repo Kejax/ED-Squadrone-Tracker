@@ -1,0 +1,71 @@
+/* Stations Table */
+
+.stations-container table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    color: #fff;
+    margin-top: 2vh;
+}
+
+.stations-container {
+    width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Tabelle */
+
+
+
+.stations-container td,
+th {
+    border: 1px solid #434343;
+    text-align: left;
+    padding: 8px;
+}
+
+.stations-container tr th {
+    color: #ea5f03;
+}
+
+.stations-container tr th:hover {
+    cursor: pointer;
+    background-color: #3d3d3d;
+}
+
+tr:nth-child(even) {
+    background-color: #1a1a1a;
+}
+
+tr:nth-child(odd) {
+    background-color: rgb(46, 46, 46);
+}
+
+.stations-container h1 {
+    color: #fff;
+    margin: 20px;
+}
+
+/* Searchbar */
+
+input {
+    background-color: rgb(46, 46, 46);
+    border: none;
+    padding: 8px;
+    width: 300px;
+    margin-left: 20px;
+}
+
+input,
+select,
+textarea {
+    color: #fff;
+}
+
+textarea:focus,
+input:focus {
+    color: #fff;
+}
