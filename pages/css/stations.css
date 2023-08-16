@@ -60,6 +60,7 @@ tr:nth-child(odd) {
 .search-container {
     display: flex;
     align-items: flex-start;
+    
 }
 
 .search-container input {
@@ -69,15 +70,12 @@ tr:nth-child(odd) {
     width: 300px;
     color: #fff;
     font-family: Arial, FontAwesome;
+
+    
 }
 
-input,
-select,
-textarea {
-    color: #fff;
-}
-
-textarea:focus,
-input:focus {
-    color: #fff;
-}
+::placeholder {
+    color: #9b9b9b;
+    opacity: 1;
+  }
+  

@@ -20,7 +20,7 @@ body {
   background: #000;
   position: fixed;
   z-index: 100;
-  margin-top: 0;
+  top: 0;
 }
 
 .preloader video {
@@ -33,6 +33,18 @@ body {
 
 /* Navbar */
 
+header nav ul a img,
+header nav ul a svg {
+  /* ... deine bisherigen Eigenschaften ... */
+  transition: transform 0.3s ease; /* Füge diese Zeile hinzu */
+}
+
+header nav ul a:hover img,
+header nav ul a:hover svg {
+  transform: scale(1.5) translateY(-8px); /* Füge diese Zeilen hinzu */
+}
+
+
 header {
   display: flex;
   justify-content: space-between;
@@ -40,8 +52,6 @@ header {
   list-style: none;
   margin: 10px;
 }
-
-
 
 header nav ul a#login,
 a#sign-up {

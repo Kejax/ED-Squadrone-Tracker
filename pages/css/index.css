@@ -8,10 +8,18 @@
 
 }
 
+.news p {
+    font-size: 18px;
+}
+
+.news h2 {
+    font-size: 32px;
+}
+
 .news p,
 h2 {
     color: #fff;
-    margin: 5px;
+    margin: 10px;
 }
 
 
