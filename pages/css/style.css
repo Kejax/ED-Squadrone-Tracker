@@ -35,13 +35,12 @@ body {
 
 header nav ul a img,
 header nav ul a svg {
-  /* ... deine bisherigen Eigenschaften ... */
-  transition: transform 0.3s ease; /* Füge diese Zeile hinzu */
+  transition: transform 0.3s ease;
 }
 
 header nav ul a:hover img,
 header nav ul a:hover svg {
-  transform: scale(1.5) translateY(-8px); /* Füge diese Zeilen hinzu */
+  transform: scale(1.5) translateY(-8px);
 }
 
 
