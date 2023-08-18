@@ -1,6 +1,10 @@
 function searchStations(event) {// Make a GET request using the Fetch API
   if (event.key === "Enter") {
-    fetch(`https://spansh.co.uk/api/search?q=${event.target.value}`)
+    fetch(`https://spansh.co.uk/api/search?q=${event.target.value}`,
+    {
+      method: 'POST',
+      body: JSON.stringify({size: 20})
+    })
       .then(response => response.json()) // Parse the response as JSON
       .then(data => {
         // Data is now an object containing the fetched JSON data

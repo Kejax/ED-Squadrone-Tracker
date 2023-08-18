@@ -2,7 +2,11 @@
 const { app, Tray, Menu, nativeImage, BrowserWindow, ipcMain, Notification, MessageChannelMain, utilityProcess } = require('electron');
 const path = require('path');
 
-const { settings } = require('electron-settings')
+const settings = require('electron-settings')
+
+settings.configure({prettify: true})
+
+settings.setSync('inaraApiKey', 'test')
 
 const os = require('os');
 const fs = require('fs');
@@ -229,6 +233,7 @@ if (gotTheLock) {
         
         // IPC Handling between renderer and main
         ipcMain.handle('ping', () => icon.toBitmap()); // Just for fun and such
+        ipcMain.handle('setInaraApiKey', (value) => settings.setSync('inaraApiKey', value))
 
         // Calls our function to create a window
         win = createWindow();
