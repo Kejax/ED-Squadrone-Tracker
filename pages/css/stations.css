@@ -53,7 +53,9 @@ tr:nth-child(odd) {
     margin: 20px 0px 20px 0px;
 }
 
-
+table a {
+    color: #ea5f03;
+}
 
 /* Searchbar */
 .search-container {
