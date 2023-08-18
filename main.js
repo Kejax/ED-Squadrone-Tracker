@@ -41,7 +41,8 @@ if (!gotTheLock) {
         }
 
         // Just for debug rightnow, as protocol handling ist still being added
-        console.log(commandLine.pop())
+        //console.log(commandLine.pop())
+        win.webContents.send('test', commandLine.pop())
 
     })
 }
@@ -137,7 +138,6 @@ try {
         cwd: journalPath
     });
     JournalPathWatcher.on('add', (path) => {
-        console.log(path)
         if (path.startsWith('Journal.')) {
             loadJournal()
         }
@@ -146,7 +146,7 @@ try {
     filesFound = false;
 }
 
-
+if(process.env.EDST !== 'developer') app.applicationMenu = null;
 
 // Set User tasks
 app.setUserTasks([
@@ -173,7 +173,8 @@ const createWindow = () => {
     const win = new BrowserWindow({
         width: 1200,
         height: 800,
-        icon: 'icon.ico',
+        icon: 'img/ed-squadrone-tracker-transparent.png',
+        //autoHideMenuBar: true,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js')
         },
@@ -201,8 +202,8 @@ if (gotTheLock) {
         ipcMain.on('journal-files-found', () => {return filesFound});
 
         // Create a tray with the icon 'tray.png'
-        const icon = nativeImage.createFromPath(path.join(__dirname, 'tray_icon.png'));
-        tray = new Tray(icon);
+        const trayIcon = nativeImage.createFromPath(path.join(__dirname, 'img/ed-squadrone-tracker-tray.png'));
+        tray = new Tray(trayIcon);
 
         // Add window show functionality on double click tray
         tray.on('double-click', (event, bounds) => {
@@ -212,7 +213,8 @@ if (gotTheLock) {
 
         // Creates the contextmenu for the tray
         const contextMenu = Menu.buildFromTemplate([
-            { label: 'EDDB', type: 'normal' , enabled: false, icon: icon, },
+            { label: 'Squadrone Tracker', type: 'normal' , enabled: false, icon: trayIcon, },
+            { type: 'separator' },
             { label: "About", type: 'normal', role: 'about' },
             { type: 'separator'},
             { label: 'Quit EDDB', type: 'normal', click: () => {

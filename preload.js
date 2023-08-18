@@ -14,3 +14,5 @@ contextBridge.exposeInMainWorld('events', {
     handleJournalUndocked: (callback) => ipcRenderer.on('journal-event-Undocked', callback),
     handleJournalMusic: (callback) => ipcRenderer.on('journal-event-Music', callback),
 })
+
+ipcRenderer.on('test', (_event, data) => console.log(data));
