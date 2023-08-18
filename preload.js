@@ -16,7 +16,8 @@ contextBridge.exposeInMainWorld('events', {
 })
 
 contextBridge.exposeInMainWorld('settings', {
-    setInaraApiKey: (data) => ipcRenderer.invoke('setInaraApiKey', data)
+    setInaraApiKey: (data) => ipcRenderer.invoke('setInaraApiKey', data),
+    getInaraApiKey: () => ipcRenderer.invoke('getInaraApiKey')
 })
 
 ipcRenderer.on('test', (_event, data) => console.log(data));

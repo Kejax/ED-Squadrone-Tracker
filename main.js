@@ -2,6 +2,8 @@
 const { app, Tray, Menu, nativeImage, BrowserWindow, ipcMain, Notification, MessageChannelMain, utilityProcess } = require('electron');
 const path = require('path');
 
+const axios = require('axios')
+
 const settings = require('electron-settings')
 
 settings.configure({prettify: true})
@@ -57,6 +59,9 @@ journalPath = path.join(os.homedir(), 'Saved Games/Frontier Developments/Elite D
 filesFound = false
 var tail;
 
+// TODO Write a class that represents current commander informations, such as current system, ship, etc.
+const commanderInformation
+
 // Function for loading the latest Journal
 function loadJournal() {
     try {
@@ -80,6 +85,36 @@ function loadJournal() {
 
             // Send the event to the frontend, whatever event occured
             win.webContents.send('journal-event', jsonData)
+            
+            // Handler if "MissionAccepted" event occured
+            if (jsonData.event === "MissionAccepted") {
+                // Convert data to INARA input json
+                const  inaraInput = {
+                    missionName: jsonData.Name,
+                    missionGameID: jsonData.MissionID,
+                    missionExpiry: jsonData.Expiry,
+                    influenceGain: jsonData.Influence,
+                    reputationGain: jsonData.Reputation,
+                    starsystemNameOrigin: commanderInformation.starsytemName,
+                    stationNameOrigin: commanderInformation.stationName,
+                    minorfactionNameOrigin: jsonData.Faction,
+                    starsystemNameTarget: jsonData.DestinationSystem,
+                    stationNameTarget: jsonData.DestinationStation,
+                    minorfactionNameTarget: jsonData.TargetFaction,
+                    commodityName: jsonData.Commodity,
+                    commodityCount: jsonData.Count,
+                    targetName: jsonData.Target,
+                    targetType: TargetType,
+                    killCount: jsonData.KillCount,
+                    passengerType: PassengerType,
+                    passengerCount: jsonData.PassengerCount,
+                    passengerIsVIP: jsonData.PassengerVIPs,
+                    passengerIsWanted: jsonData.PassengerWanted
+                }
+
+                // TODO Add the INARA post function
+                axios.post('post', {})
+            }
 
             // Handler if "Docked" event occured
             if (jsonData.event === "Docked") {
@@ -234,6 +269,7 @@ if (gotTheLock) {
         // IPC Handling between renderer and main
         ipcMain.handle('ping', () => icon.toBitmap()); // Just for fun and such
         ipcMain.handle('setInaraApiKey', (value) => settings.setSync('inaraApiKey', value))
+        ipcMain.handle('getInaraApiKey', (value) => settings.getSync('inaraApiKey'))
 
         // Calls our function to create a window
         win = createWindow();

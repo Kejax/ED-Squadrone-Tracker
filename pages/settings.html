@@ -76,16 +76,18 @@
 
         <form>
 
-            <label for="inaraApiKey">Inara API Key</label>
+            <label for="inaraApiKey" style="color:white">Inara API Key</label>
             <input id="inaraApiKey" type="text" name="inaraApiKey" />
 
             <input type="submit" value="Speichern">
 
             <script>
 
+                const inaraApiKey = document.getElementById('inaraApiKey');
+                inaraApiKey.value = window.settings.getInaraApiKey()
+
                 const button = document.querySelector('input[type=submit]')
                 button.addEventListener('click', () => {
-                    const inaraApiKey = document.getElementById('inaraApiKey');
                     window.settings.setInaraApiKey(inaraApiKey.value);
                 })
 
