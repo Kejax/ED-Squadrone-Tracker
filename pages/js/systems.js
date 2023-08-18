@@ -24,10 +24,10 @@ function searchSystems(event) {// Make a GET request using the Fetch API
               nameCell.innerHTML = `<a href="system_information.html?systemAddress=${record.id64}">${record.name}</a>`;
               row.appendChild(nameCell);
 
-              // Allegiance
+              // Economy
               let economyCell = document.createElement('td');
-              if (record.economy) {
-                economyCell.textContent = record.allegiance;
+              if (record.primary_economy) {
+                economyCell.textContent = record.primary_economy;
               } else economyCell.textContent = "---";
               row.appendChild(economyCell);
 
@@ -36,11 +36,11 @@ function searchSystems(event) {// Make a GET request using the Fetch API
               governmentCell.textContent = record.government;
               row.appendChild(governmentCell);
 
-              // Economies
+              // Allegiance
               // TODO find a way to show several economies, not just 1
               let allegianceCell = document.createElement('td');
               if (record.allegiance) {
-                allegianceCell.textContent = record.primary_economy.name;
+                allegianceCell.textContent = record.allegiance;
               } else allegianceCell.textContent = "---";
               row.appendChild(allegianceCell);
               
