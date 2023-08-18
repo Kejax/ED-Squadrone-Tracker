@@ -15,4 +15,8 @@ contextBridge.exposeInMainWorld('events', {
     handleJournalMusic: (callback) => ipcRenderer.on('journal-event-Music', callback),
 })
 
+contextBridge.exposeInMainWorld('settings', {
+    setInaraApiKey: (data) => ipcRenderer.invoke('setInaraApiKey', data)
+})
+
 ipcRenderer.on('test', (_event, data) => console.log(data));
