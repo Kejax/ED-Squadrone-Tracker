@@ -2,7 +2,11 @@
 const { app, Tray, Menu, nativeImage, BrowserWindow, ipcMain, Notification, MessageChannelMain, utilityProcess } = require('electron');
 const path = require('path');
 
-const { settings } = require('electron-settings')
+const settings = require('electron-settings')
+
+settings.setSync('inaraApiKey', 'test')
+
+console.log(settings.getSync('inaraApiKey'))
 
 const os = require('os');
 const fs = require('fs');
