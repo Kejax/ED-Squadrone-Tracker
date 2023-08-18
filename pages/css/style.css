@@ -33,6 +33,11 @@ body {
 
 /* Navbar */
 
+#logo img {
+  height: 70px;
+}
+
+
 header nav ul a img,
 header nav ul a svg {
   transition: transform 0.3s ease;
