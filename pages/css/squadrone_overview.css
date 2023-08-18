@@ -47,6 +47,10 @@ h1 {
     background-color: #3d3d3d;
 }
 
+table a {
+    color: #ea5f03;
+}
+
 tr:nth-child(even) {
     background-color: #1a1a1a;
 }
