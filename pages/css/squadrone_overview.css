@@ -49,6 +49,7 @@ h1 {
 
 table a {
     color: #ea5f03;
+    text-decoration: none;
 }
 
 tr:nth-child(even) {

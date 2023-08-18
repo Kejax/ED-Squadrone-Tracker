@@ -55,6 +55,7 @@ tr:nth-child(odd) {
 
 table a {
     color: #ea5f03;
+    text-decoration: none;
 }
 
 /* Searchbar */
