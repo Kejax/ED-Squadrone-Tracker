@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/settings.css">
     <link rel="stylesheet" href="css/style.css">
 
     <meta property="og:type" content="website">
@@ -74,13 +74,14 @@
             </div>
         </div>
 
+        <div class="settings-input">
         <form action="" onsubmit="return false">
 
-            <label for="inaraApiKey" style="color:white">Inara API Key</label>
-            <input id="inaraApiKey" type="text" name="inaraApiKey" />
+            <label for="inaraApiKey" style="color:white">Enter here your Inara API Key</label> <br>
+            <input placeholder="Inara API Key" id="inaraApiKey" type="text" name="inaraApiKey" /> <br>
 
-            <input type="button" data-type="submit" value="Speichern">
-
+            <input id="button" type="button" data-type="submit" value="&#xf00c" style="font-family: Arial, FontAwesome">
+          </div>
             <script>
 
                 window.addEventListener('DOMContentLoaded', async () => {

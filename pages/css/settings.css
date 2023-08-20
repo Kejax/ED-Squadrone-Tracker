@@ -1,0 +1,64 @@
+/* Position */
+
+.settings-input {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+/* Input/Label Style */
+
+.settings-input label {
+    text-align: center;
+    display: block;
+    font-size: 22px;
+}
+
+.settings-input input::placeholder {
+    font-size: 18px;
+}
+
+.settings-input input#inaraApiKey {
+    background-color: rgb(73, 73, 73);
+    border-radius: 20px 20px 20px 20px;
+    border: none;
+    padding: 14px;
+    width: 300px;
+    color: #fff;
+    font-family: Arial, FontAwesome;
+}
+
+
+
+/* Submit Button */
+
+.settings-input input#button {
+    cursor: pointer;
+    color: #fff;
+    background-color: #0d6efd;
+    display: inline-block;
+    line-height: 28px;
+    text-align: center;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 16px;
+    border-radius: 20px 20px 20px 20px;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+    margin-top: 14px;
+    width: 328px;
+}
+
+.settings-input input#button:hover {
+    color: #fff;
+    background-color: #0b5ed7;
+    border-color: #0a58ca;    
+}
+
+/* Hide Border on active */
+
+textarea:focus, input:focus{
+    outline: none;
+}
