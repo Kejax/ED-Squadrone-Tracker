@@ -2,19 +2,21 @@
 const { app, Tray, Menu, nativeImage, BrowserWindow, ipcMain, Notification, MessageChannelMain, utilityProcess } = require('electron');
 const path = require('path');
 
-const axios = require('axios')
+const axios = require('axios');
 
-const settings = require('electron-settings')
+const settings = require('electron-settings');
 
 settings.configure({prettify: true})
 
-settings.setSync('inaraApiKey', 'test')
-
 const os = require('os');
 const fs = require('fs');
+const readline = require('readline');
 
 const { Tail } = require('tail');
 const chokidar = require('chokidar');
+
+const { Commander } = require('./models.js');
+const { InaraHandler } = require('./inaraHandler.js');
 
 if (require('electron-squirrel-startup')) app.quit();
 
@@ -58,13 +60,15 @@ journalPath = path.join(os.homedir(), 'Saved Games/Frontier Developments/Elite D
 
 filesFound = false
 var tail;
+var currentJournalFile;
 
 // TODO Write a class that represents current commander informations, such as current system, ship, etc.
-const commanderInformation
+var commanderInformation
+const inaraHandler = new InaraHandler
 
 // Function for loading the latest Journal
-function loadJournal() {
-    try {
+async function loadJournal() {
+    if (true) {
 
         // Tries to find the latest Journal
         files = fs.readdirSync(journalPath)
@@ -72,9 +76,47 @@ function loadJournal() {
         files = files.filter(e => e.startsWith('Journal.'))
         files.sort();
         files.reverse();
+
+        if (files[0] === currentJournalFile) {
+            return
+        }
+
+        currentJournalFile = files[0];
+
         if (tail) {
             tail.unwatch();
         }
+
+        const fileStream = fs.createReadStream(path.join(journalPath, files[0]));
+        const rl = readline.createInterface({
+            input: fileStream,
+            crlfDelay: Infinity
+        });
+
+        // Load the history of the content file if tracker was started after the game start
+        for await (const line of rl) {
+            pastData = JSON.parse(line);
+            if (pastData.event === 'Commander') {
+                console.log('Commander Event!')
+                commanderInformation = new Commander(pastData.Name, pastData.FID)
+                console.log(commanderInformation.name, commanderInformation.fid)
+            } else if (pastData.event === 'Location') {
+                commanderInformation.starsytemName = pastData.StarSystem;
+                if (pastData.Docked) {
+                    commanderInformation.stationname = pastData.StationName;
+                }
+            } else if (pastData.event === 'FSDJump') {
+                commanderInformation.starsytemName = pastData.StarSystem;
+            } else if (pastData.event === 'Docked') {
+                commanderInformation.stationName = pastData.StationName;
+            } else if (pastData.event === 'Undocked') {
+                commanderInformation.stationName = undefined
+            } else if (pastData.event === 'CarrierJump') {
+                commanderInformation.starsystemName = pastData.SystemName;
+            }
+        }
+        // Close the filestream for safety
+        fileStream.close()
         
         // Creates a new Tail for the latest Journal
         tail = new Tail(path.join(journalPath, files[0]));
@@ -104,7 +146,7 @@ function loadJournal() {
                     commodityName: jsonData.Commodity,
                     commodityCount: jsonData.Count,
                     targetName: jsonData.Target,
-                    targetType: TargetType,
+                    targetType: jsonData.TargetType,
                     killCount: jsonData.KillCount,
                     passengerType: PassengerType,
                     passengerCount: jsonData.PassengerCount,
@@ -113,11 +155,35 @@ function loadJournal() {
                 }
 
                 // TODO Add the INARA post function
-                axios.post('post', {})
+                axios.post('post', {
+                    header: {
+                        appName: 'Squadrone Tracker',
+                        appVersion: process.env.npm_package_version,
+                        isBeingDeveloped: true,
+                        APIkey: settings.getSync('inaraApiKey'),
+                        commanderName: commanderInformation.name,
+                        commanderFrontierID: commanderInformation.FID
+                    },
+                    events: [
+                        inaraInput
+                    ]
+                })
             }
 
+            // Handler if "Location" event occured
+            if (jsonData.event === 'Location') {
+                commanderInformation.starsystemName = jsonData.StarSystem;
+                if (jsonData.Docked) {
+                    commanderInformation.stationName = jsonData.StationName;
+                }
+            }
+            // Handler if "FSDJump" event occured
+            else if (jsonData.event === 'FSDJump') {
+                commanderInformation.starsystemName = jsonData.StarSystem;
+            }
             // Handler if "Docked" event occured
-            if (jsonData.event === "Docked") {
+            else if (jsonData.event === "Docked") {
+                commanderInformation.stationName = jsonData.StationName;
                 win.webContents.send('journal-event-Docked', jsonData) // Send "Docked" event to the frontend
 
                 // Send a notification about the docking
@@ -146,15 +212,23 @@ function loadJournal() {
                     </toast>`
                 }).show()*/
             }
+            // Handler if "Undocked" event occured
+            else if (jsonData.event === 'Undocked') {
+                commanderInformation.stationname = undefined;
+            }
+            // Handler if "CarrierJump" event occured
+            else if (jsonData.event === 'CarrierJump') {
+                commanderInformation.starsystemName = jsonData.StarSystem;
+            }
 
         })
     
         return true;
-    
-    } catch (error) {
-        //if (error.code === 'ENOENT') {
-        return false
     }
+    // } catch (error) {
+    //     //if (error.code === 'ENOENT') {
+    //     return false
+    // }
 }
 
 function createWebServerProcess() {
@@ -210,8 +284,8 @@ app.setAboutPanelOptions({
 // Function to create and load the default window
 const createWindow = () => {
     const win = new BrowserWindow({
-        width: 1200,
-        height: 800,
+        width: 1920,
+        height: 1080,
         icon: 'img/ed-squadrone-tracker-transparent.png',
         //autoHideMenuBar: true,
         webPreferences: {
@@ -268,8 +342,8 @@ if (gotTheLock) {
         
         // IPC Handling between renderer and main
         ipcMain.handle('ping', () => icon.toBitmap()); // Just for fun and such
-        ipcMain.handle('setInaraApiKey', (value) => settings.setSync('inaraApiKey', value))
-        ipcMain.handle('getInaraApiKey', (value) => settings.getSync('inaraApiKey'))
+        ipcMain.handle('setInaraApiKey', (_event, value) => settings.setSync('inaraApiKey', value))
+        ipcMain.handle('getInaraApiKey', () => {console.log(settings.getSync('inaraApiKey'));return settings.getSync('inaraApiKey')})
 
         // Calls our function to create a window
         win = createWindow();

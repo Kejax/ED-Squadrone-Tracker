@@ -70,25 +70,30 @@
 
         <div class="directory">
             <div class="directory-content">
-                <a href="index.html">Elite</a> <i class='fas fa-angle-right'> <a href="settings.html">Settings</a></i>
+                <a href="index.html">Elite</a> <i class='fas fa-angle-right'></i> <a href="settings.html">Settings</a>
             </div>
         </div>
 
-        <form>
+        <form action="" onsubmit="return false">
 
             <label for="inaraApiKey" style="color:white">Inara API Key</label>
             <input id="inaraApiKey" type="text" name="inaraApiKey" />
 
-            <input type="submit" value="Speichern">
+            <input type="button" data-type="submit" value="Speichern">
 
             <script>
 
-                const inaraApiKey = document.getElementById('inaraApiKey');
-                inaraApiKey.value = window.settings.getInaraApiKey()
+                window.addEventListener('DOMContentLoaded', async () => {
 
-                const button = document.querySelector('input[type=submit]')
-                button.addEventListener('click', () => {
-                    window.settings.setInaraApiKey(inaraApiKey.value);
+                  const inaraApiKey = document.getElementById('inaraApiKey');
+                  inaraApiKey.value = await window.settings.getInaraApiKey();
+
+                  async function updateSettings() {
+                    await window.settings.setInaraApiKey(inaraApiKey.value);
+                  }
+
+                  const button = document.querySelector('input[data-type=submit]')
+                  button.addEventListener('click', updateSettings)
                 })
 
             </script>
