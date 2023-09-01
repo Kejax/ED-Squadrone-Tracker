@@ -155,7 +155,7 @@ async function loadJournal() {
                 }
 
                 // TODO Add the INARA post function
-                axios.post('post', {
+                /*axios.post('post', {
                     header: {
                         appName: 'Squadrone Tracker',
                         appVersion: process.env.npm_package_version,
@@ -167,7 +167,7 @@ async function loadJournal() {
                     events: [
                         inaraInput
                     ]
-                })
+                })*/
             }
 
             // Handler if "Location" event occured
