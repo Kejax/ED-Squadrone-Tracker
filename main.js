@@ -261,18 +261,6 @@ try {
 
 if(process.env.EDST !== 'developer') app.applicationMenu = null;
 
-// Set User tasks
-app.setUserTasks([
-    {
-        program: process.execPath,
-        arguments: '--new-window',
-        iconPath: process.execPath,
-        iconIndex: 0,
-        title: "New Window",
-        description: "Create a new Window"
-    }
-])
-
 // Sets the app's about menu
 app.setAboutPanelOptions({
     applicationName: 'ED Squadrone Tracker',
