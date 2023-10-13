@@ -23,6 +23,10 @@ function loadStationContent() {
                 if (data.record.has_large_pad) {
                     element.textContent = 'L'
                 } else element.textContent = 'M'
+            } else if (key == 'distance_to_arrival') {
+                element.textContent = Math.round(data.record.distance_to_arrival) + ' LS'
+            } else if (key == 'updated_at') {
+                element.textContent = new Date(data.record.updated_at).toUTCString()
             }
         });
 

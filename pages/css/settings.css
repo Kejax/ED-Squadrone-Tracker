@@ -10,7 +10,7 @@
 
 /* Input/Label Style */
 
-.settings-input label {
+.settings-input .row {
     text-align: center;
     display: block;
     font-size: 22px;

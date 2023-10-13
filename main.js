@@ -1,5 +1,6 @@
 
 const { app, Tray, Menu, nativeImage, BrowserWindow, ipcMain, Notification, MessageChannelMain, utilityProcess } = require('electron');
+
 const path = require('path');
 
 const axios = require('axios');
@@ -259,7 +260,7 @@ try {
     filesFound = false;
 }
 
-if(process.env.EDST !== 'developer') app.applicationMenu = null;
+if(process.env.EDST !== 'developer') app.applicationMenu = null; // TODO fix implementation to make it work!!!
 
 // Sets the app's about menu
 app.setAboutPanelOptions({
@@ -286,8 +287,13 @@ const createWindow = () => {
     })
 
     win.on('close', (event) => {
-        win.hide();
-        event.preventDefault();
+        console.log(settings.getSync('hideToTray'));
+        if (settings.getSync('hideToTray') === true) {
+            win.hide();
+            event.preventDefault();
+        } else {
+            app.quit()
+        }
     })
 
     win.loadFile('pages/index.html')
@@ -330,8 +336,12 @@ if (gotTheLock) {
         
         // IPC Handling between renderer and main
         ipcMain.handle('ping', () => icon.toBitmap()); // Just for fun and such
+        
         ipcMain.handle('setInaraApiKey', (_event, value) => settings.setSync('inaraApiKey', value))
-        ipcMain.handle('getInaraApiKey', () => {console.log(settings.getSync('inaraApiKey'));return settings.getSync('inaraApiKey')})
+        ipcMain.handle('getInaraApiKey', () => {return settings.getSync('inaraApiKey')})
+        
+        ipcMain.handle('setHideToTray', (_event, value) => settings.setSync('hideToTray', value))
+        ipcMain.handle('getHideToTray', () => {console.log(settings.getSync('hideToTray')); return settings.getSync('hideToTray')})
 
         // Calls our function to create a window
         win = createWindow();
@@ -340,4 +350,8 @@ if (gotTheLock) {
 }
 
 // Prevents the app from quitting when all windows have been closed
-app.on('window-all-closed', e => e.preventDefault() )
+app.on('window-all-closed', e => {
+    if (settings.getSync('hideToTray') === true) {
+        e.preventDefault()
+    }
+})

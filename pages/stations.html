@@ -35,7 +35,7 @@
             <li><img src="https://edassets.org/static/img/power-ethos/Social.svg"></li>
           </a>
           <a title="Squadrone" href="squadrone_overview.html">
-            <li><img src="https://fliegevieh.de/ed/squadrone.svg"></li>
+            <!--<li><img src="https://fliegevieh.de/ed/squadrone.svg"></li>-->
           </a>
           <a href="systems.html">
             <li><img src="https://edassets.org/static/img/power-related/Expanding.svg"></li>
@@ -73,7 +73,14 @@
       <h1><i class='fas fa-angle-right'></i> Stations</h1>
       
       <div class="search-container">
-        <input id="searchbar" type="text" onkeydown="searchStations(event)" placeholder="&#xF002; Search" style="font-family: Arial, FontAwesome">
+        <input id="searchbar" type="text" placeholder="&#xF002; Search" style="font-family: Arial, FontAwesome">
+        <script>
+          document.getElementById('searchbar').addEventListener('keypress', (event) => {
+            if (event.code == 'Enter') {
+              searchStations(event.target.value, null)
+            }
+          })
+        </script>
       </div>
 
       <div class="table-container">

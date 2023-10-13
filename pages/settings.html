@@ -77,10 +77,13 @@
         <div class="settings-input">
         <form action="" onsubmit="return false">
 
-            <label for="inaraApiKey" style="color:white">Enter here your Inara API Key</label> <br>
-            <input placeholder="Inara API Key" id="inaraApiKey" type="text" name="inaraApiKey" /> <br>
+            <span class="row"><label for="inaraApiKey" style="color:white">Enter here your Inara API Key</label></span>
+            <span class="row"><input placeholder="Inara API Key" id="inaraApiKey" type="text" name="inaraApiKey" /></span>
+            <br>
+            <span class="row"><label for="trayIcon" style="color:white">Minimize to tray on exit</label>
+            <input id="trayIcon" type="checkbox" name="trayIcon" /></span><br>
 
-            <input id="button" type="button" data-type="submit" value="&#xf00c" style="font-family: Arial, FontAwesome">
+            <span class="row"><input id="button" type="button" data-type="submit" value="&#xf00c" style="font-family: Arial, FontAwesome"></span>
           </div>
             <script>
 
@@ -88,9 +91,13 @@
 
                   const inaraApiKey = document.getElementById('inaraApiKey');
                   inaraApiKey.value = await window.settings.getInaraApiKey();
+                  const hideToTray = document.getElementById('trayIcon');
+                  hideToTray.checked = await window.settings.getHideToTray();
 
                   async function updateSettings() {
                     await window.settings.setInaraApiKey(inaraApiKey.value);
+                    await window.settings.setHideToTray(hideToTray.checked)
+                    console.log(hideToTray.checked);
                   }
 
                   const button = document.querySelector('input[data-type=submit]')

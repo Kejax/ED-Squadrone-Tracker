@@ -16,8 +16,11 @@ contextBridge.exposeInMainWorld('events', {
 })
 
 contextBridge.exposeInMainWorld('settings', {
-    setInaraApiKey: (data) => {console.log(data);ipcRenderer.invoke('setInaraApiKey', data)},
-    getInaraApiKey: () => {return ipcRenderer.invoke('getInaraApiKey')}
+    setInaraApiKey: (data) => {ipcRenderer.invoke('setInaraApiKey', data)},
+    getInaraApiKey: () => {return ipcRenderer.invoke('getInaraApiKey')},
+    
+    setHideToTray: (data) => ipcRenderer.invoke('setHideToTray', data),
+    getHideToTray: () => {return ipcRenderer.invoke('getHideToTray')} 
 })
 
 ipcRenderer.on('test', (_event, data) => console.log(data));

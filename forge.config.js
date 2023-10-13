@@ -48,7 +48,7 @@ module.exports = {
           name: 'ED-Squadrone-Tracker'
         },
         prerelease: true,
-        draft: true
+        draft: false
       }
     }
   ],
