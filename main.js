@@ -63,11 +63,11 @@ filesFound = false
 var tail;
 var currentJournalFile;
 
-// TODO Write a class that represents current commander informations, such as current system, ship, etc.
 var commanderInformation
-const inaraHandler = new InaraHandler
+const inaraHandler = new InaraHandler();
 
 // Function for loading the latest Journal
+// TODO Move journal reading, loading, etc. to a sub module
 async function loadJournal() {
     if (true) {
 
@@ -98,9 +98,7 @@ async function loadJournal() {
         for await (const line of rl) {
             pastData = JSON.parse(line);
             if (pastData.event === 'Commander') {
-                console.log('Commander Event!')
                 commanderInformation = new Commander(pastData.Name, pastData.FID)
-                console.log(commanderInformation.name, commanderInformation.fid)
             } else if (pastData.event === 'Location') {
                 commanderInformation.starsytemName = pastData.StarSystem;
                 if (pastData.Docked) {
@@ -132,43 +130,9 @@ async function loadJournal() {
             // Handler if "MissionAccepted" event occured
             if (jsonData.event === "MissionAccepted") {
                 // Convert data to INARA input json
-                const  inaraInput = {
-                    missionName: jsonData.Name,
-                    missionGameID: jsonData.MissionID,
-                    missionExpiry: jsonData.Expiry,
-                    influenceGain: jsonData.Influence,
-                    reputationGain: jsonData.Reputation,
-                    starsystemNameOrigin: commanderInformation.starsytemName,
-                    stationNameOrigin: commanderInformation.stationName,
-                    minorfactionNameOrigin: jsonData.Faction,
-                    starsystemNameTarget: jsonData.DestinationSystem,
-                    stationNameTarget: jsonData.DestinationStation,
-                    minorfactionNameTarget: jsonData.TargetFaction,
-                    commodityName: jsonData.Commodity,
-                    commodityCount: jsonData.Count,
-                    targetName: jsonData.Target,
-                    targetType: jsonData.TargetType,
-                    killCount: jsonData.KillCount,
-                    passengerType: PassengerType,
-                    passengerCount: jsonData.PassengerCount,
-                    passengerIsVIP: jsonData.PassengerVIPs,
-                    passengerIsWanted: jsonData.PassengerWanted
-                }
+                inaraHandler.addMissionAcceptedEvent(jsonData);
 
-                // TODO Add the INARA post function
-                /*axios.post('post', {
-                    header: {
-                        appName: 'Squadrone Tracker',
-                        appVersion: process.env.npm_package_version,
-                        isBeingDeveloped: true,
-                        APIkey: settings.getSync('inaraApiKey'),
-                        commanderName: commanderInformation.name,
-                        commanderFrontierID: commanderInformation.FID
-                    },
-                    events: [
-                        inaraInput
-                    ]
-                })*/
+                inaraHandler.sendEvents(settings.getSync('inaraApiKey'));
             }
 
             // Handler if "Location" event occured
@@ -232,17 +196,6 @@ async function loadJournal() {
     // }
 }
 
-function createWebServerProcess() {
-    // This function is used to create a Utility Process which is being used to create a local webserver for Streamers
-    // Streamers are able to add live updated data to their stream, like current ship, position, group, system, station, etc.
-    // The webservers script can be found in streamserver.js
-
-    const { port1, port2 } = new MessageChannelMain()
-    const child = utilityProcess.fork(path.join(__dirname, 'streamserver.js'))
-
-    return child
-}
-
 // Loads the latest journal
 try {
     filesFound = loadJournal();
@@ -287,7 +240,6 @@ const createWindow = () => {
     })
 
     win.on('close', (event) => {
-        console.log(settings.getSync('hideToTray'));
         if (settings.getSync('hideToTray') === true) {
             win.hide();
             event.preventDefault();
@@ -314,8 +266,11 @@ if (gotTheLock) {
 
         // Add window show functionality on double click tray
         tray.on('double-click', (event, bounds) => {
-            if (BrowserWindow.getAllWindows().length === 0) {win = createWindow(); console.log("TEST")}
-            else win.show()
+            if (BrowserWindow.getAllWindows().length === 0) {win = createWindow();}
+            else {
+                win.show();
+            }
+
         })
 
         // Creates the contextmenu for the tray
@@ -341,7 +296,7 @@ if (gotTheLock) {
         ipcMain.handle('getInaraApiKey', () => {return settings.getSync('inaraApiKey')})
         
         ipcMain.handle('setHideToTray', (_event, value) => settings.setSync('hideToTray', value))
-        ipcMain.handle('getHideToTray', () => {console.log(settings.getSync('hideToTray')); return settings.getSync('hideToTray')})
+        ipcMain.handle('getHideToTray', () => {return settings.getSync('hideToTray')})
 
         // Calls our function to create a window
         win = createWindow();
