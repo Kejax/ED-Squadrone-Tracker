@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <!-- https://edassets.org/#/elitedangerouslogos -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/stations.css">
+  <title>Elite Info</title>
+</head>
+
+<body>
+
+  <div class="preloader">
+    <video autoplay loop muted>
+      <source src="images/preloader.webm" type="video/webm">
+    </video>
+  </div>
+  <header>
+
+    <div id="logo">
+      <li><a href="index.html"><img src="images/ed-squadrone-tracker-title.png" alt="https://placehold.co/128x32"></a></li>
+    </div>
+
+    <nav>
+      <ul>
+        <div id="navbar-right">
+          <a href="stations.html">
+            <li><img title="Stations" src="https://edassets.org/static/img/stations/Ocellus_sm.svg"></li>
+          </a>
+          <a title="License" href="license.html">
+            <li><img src="https://edassets.org/static/img/power-ethos/Social.svg"></li>
+          </a>
+          <a title="Squadrone" href="squadrone_overview.html">
+            <li><img src="https://fliegevieh.de/ed/squadrone.svg"></li>
+          </a>
+          <a href="systems.html">
+            <li><img src="https://edassets.org/static/img/power-related/Expanding.svg"></li>
+          </a>
+          <a id="login" href="accounting/login.html">
+            <li>Login</li>
+          </a>
+          <a id="sign-up" href="accounting/sign-up.html">
+            <li>Sign up</li>
+          </a>
+          <a href="settings.html">
+            <li><svg style="fill: #fff;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"/></svg></li>
+          </a>
+        </div>
+
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <div class="directory">
+      <div class="directory-content">
+        <a href="index.html">Elite</a> <i class='fas fa-angle-right'></i> <a href="stations.html">Stations</a>
+        
+      </div>
+    </div>
+
+
+
+
+
+
+    <div class="stations-container">
+      <h1><i class='fas fa-angle-right'></i> Stations</h1>
+      
+      <div class="search-container">
+        <input id="searchbar" type="text" placeholder="&#xF002; Search" style="font-family: Arial, FontAwesome">
+        <script>
+          document.getElementById('searchbar').addEventListener('keypress', (event) => {
+            if (event.code == 'Enter') {
+              searchStations(event.target.value, null)
+            }
+          })
+        </script>
+      </div>
+
+      <div class="table-container">
+  
+  <table id="table">
+    <thead>
+      <tr>
+        <th>Station</th>
+        <th>Star System</th>
+        <th>Allegiance</th>
+        <th>Government</th>
+        <th>Economy</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <!--<td><a href="">Alfreds Futterkiste</a></td>
+        <td>Maria Anders</td>
+        <td>Germany</td>-->
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+  <script src="js/stations.js" id="stations-api"></script>
+
+
+
+</div>
+</main>
+
+<script src="js/preloader.js"></script>
+</body>
+
+</html>

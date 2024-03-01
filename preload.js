@@ -1,10 +1,14 @@
-const { contextBridge, ipcRenderer } = require('electron');
+const { contextBridge, ipcRenderer } = require('electron/renderer');
 
 contextBridge.exposeInMainWorld('versions', {
     node: () => process.versions.node,
     chrome: () => process.versions.chrome,
     electron: () => process.versions.electron,
     ping: () => ipcRenderer.invoke('ping')
+})
+
+contextBridge.exposeInMainWorld('main', {
+    openAboutPanel: (data) => ipcRenderer.invoke('openAboutPanel', data),
 })
 
 contextBridge.exposeInMainWorld('events', {

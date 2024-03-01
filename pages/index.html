@@ -1,150 +1,59 @@
 <!DOCTYPE html>
-<html lang="de">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Elite Info</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/style.css">
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https://*; child-src 'none';" /> -->
+    <title>Squadrone Tracker</title>
 
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="ED Info">
-    <meta property="og:url" content="https://edinfo.fliegevieh.de" />
-    <meta property="og:image" content="https://edinfo.fliegevieh.de/images/edinfo.png" />
-    <meta property="og:image:type" content="https://edinfo.fliegevieh.de/images/edinfo.png">
-    <meta property="og:image:alt" content="ED Info Icon">
-    <meta property="og:description" content="
-
-    ED Info is a soon to be website that should help you in Elite Dangerous! Currently it's beeing programmed and isn't available.
-">
-
+    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="module" src="js/renderer.js" defer></script>
+    <link rel="stylesheet" href="css/app.css">
 </head>
 
 <body>
-    <div class="preloader">
-        <video autoplay loop muted>
-            <source src="images/preloader.webm" type="video/webm">
-        </video>
-    </div>
 
-
-
-
-
-    <header>
-        <div id="logo">
-            <li><a href="index.html"><img src="images/ed-squadrone-tracker-title.png" alt="https://placehold.co/128x32"></a></li>
-        </div>
-
-        <nav>
-          <ul>
-            <div id="navbar-right">
-              <a href="stations.html">
-                <li><img title="Stations" src="https://edassets.org/static/img/stations/Ocellus_sm.svg"></li>
-              </a>
-              <a title="License" href="license.html">
-                <li><img src="https://edassets.org/static/img/power-ethos/Social.svg"></li>
-              </a>
-              <a title="Squadrone" href="squadrone_overview.html">
-                <li><img src="https://fliegevieh.de/ed/squadrone.svg"></li>
-              </a>
-              <a href="systems.html">
-                <li><img src="https://edassets.org/static/img/power-related/Expanding.svg"></li>
-              </a>
-              
-              <a id="login" href="accounting/login.html">
-                <li>Login</li>
-              </a>
-              <a id="sign-up" href="accounting/sign-up.html">
-                <li>Sign up</li>
-              </a>
-              <a href="settings.html">
-                <li><svg style="fill: #fff;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"/></svg></li>
-              </a>
-            </div>
-    
-          </ul>
-          </nav>
+    <header id="header">
+        
     </header>
 
-    <main>
+    <aside id="sidebar">
 
+        <button id="sidebar-home" onclick="loadPage('home.html')">Home</button>
 
-        <div class="directory">
-            <div class="directory-content">
-                <a href="index.html">Elite</a> <i class='fas fa-angle-right'></i>
-            </div>
+        <div id="sidebar-section-data" class="section">
+            <header class="section-header">Data</header>
+            <button onclick="loadPage('systems.html')">Systems</button>
+            <button onclick="loadPage('stations.html')">Stations</button>
+            <button onclick="loadPage('recent_systems.html')">Recently Systems</button>
         </div>
-
-        <div class="news">
-            <div class="news-1">
-              <h2>Distant Thargoid Encounter Raises Questions</h2>
-              <p>An independent explorer has reported an unusual incident involving a Thargoid vessel, hundreds of light years away from the ongoing invasion.
-
-                Commander Renia Rakowski told her story to Vox Galactica:
-                
-                “I’d been gathering exploration data for weeks without seeing another soul. Boring, I know, but I like a quiet life. As I jumped out of the Wregoe GA-X B3-0 system, my ship rocked violently and I panicked, thinking the hyperdrive had failed. I barely saw it at first, black against the black of space, until its outline glowed. A Thargoid interceptor. Just like on the newsfeeds, but right outside my canopy.”
-                
-                “I’ve never been in combat before, and my ship carries no weapons anyway, so I thought this was the end of me. My heart was drumming as I stared at the alien, and it stared back like some giant lidless eye. A writhing light lashed out, this rasping howl came over the comms, and then… it left. I wasn’t dead, which was quite the surprise.”
-                
-                “I watched it gliding away, its petals rotating and revolving, sort of beautifully I suppose. It actually turned its back on me, like I was some insignificant speck unworthy of attention. I’ve never been so glad to be boring.”
-                
-                Commodore Emil Varga, the Alliance’s military liaison to Aegis, provided a follow-up statement:
-                
-                “This incident took place a considerable distance from the Maelstroms. Initially, we feared this was evidence that new Titans had arrived and were performing a flanking manoeuvre. However, if the interceptor had been part of the invasion fleets, it would have opened fire immediately after hyperdiction occurred.”
-                
-                “The immediate area around Wregoe GA-X B3-0 contains no barnacle sites or records of Thargoid activity that we’re aware of. Universal Cartographics confirmed we have some basic exploration data for that part of the Wregoe sector, but no previous Thargoid encounters. Civilians are warned to stay away from that region until we know more.”</p>
-            </div>
-            <div class="news-2">
-                <h2>Aegis Investigates Missing Populations</h2>
-                <p>An analysis of survivors from recent Thargoid conflicts and invasions has raised the possibility of human abductions on a colossal scale.
-
-                  Professor Alba Tesreau, head of Aegis, delivered a personal statement to the media:
-                  
-                  “A few months ago I was contacted by Zuri Afolayan , a senior analyst for Safeguard Interstellar. Her job involves collating civil and military data to determine where emergency aid is most needed. She had identified consistent discrepancies between the registered populations of Thargoid-occupied systems and all confirmed deaths, refugees and stranded survivors.”
-                  
-                  “Aegis performed detailed comparisons of Ms Afolayan’s findings with other sources. This led to one inescapable conclusion: tens of millions of people have vanished since the start of the war.”
-                  
-                  “No doubt many deaths have gone unrecorded, and many others have fled into deep space. But the recent appearance of the Scythe-class hunter, coupled with events aboard the Dedicant megaship, suggest that at least some have been taken into captivity.”
-                  
-                  “I am very conscious that this statement may be seen as alarmist and speculative. But our xenologists and strategists are considering the implications of a mass abduction programme by the Thargoids. Any opportunity to recover these lost souls will be explored as a priority.”
-                  
-                  Field correspondent Ernesto Rios published his observations via Vox Galactica:
-                  
-                  “It’s a well-documented fact that Thargoid vessels occasionally take onboard occupied escape pods. But Aegis now believes that the aliens are no longer just attacking humanity – they are attempting to capture us alive en masse.”
-                  
-                  “What are we to them? Prisoners of war? Food for their young? Fuel for their biomechanical technology? Or is this just misinterpreted data and battlefield rumours? In my career I have heard many of these, and in this instance I’m praying that is the case.”</p>
-            </div>
-            <div class="news-3">
-                <h2>Thargoid Scythes Undertake ‘Human Harvest’</h2>
-                <p>*Pilots’ Federation ALERT*
-
-                  A new type of Thargoid vessel is hyperdicting human ships and capturing living passengers.
-                  
-                  Aegis has designated the hunter-class alien ship as a ‘Scythe’. Aden Tanner released an assessment of its capabilities:
-                  
-                  “This Thargoid vessel has been designed not just for combat, but to hyperdict ships and extract human beings from them. Our observations of its tactics suggesting that abduction is its primary purpose.”
-                  
-                  “A Scythe’s initial attack mirrors that of its Glaive cousin, by attempting to disable frame shift drives and deplete shields. It then launches a unique strike to makes passenger cabins and cargo holds uninhabitable. The resulting escape pods are rapidly drawn onboard onto the Scythe intact.”
-                  
-                  Further observations were made by Vice Admiral Skylar Anderson, the Empire’s military liaison to Aegis:
-                  
-                  "Due to their modus operandi, it now seems likely that the Dedicant’s population was forced to abandon the megaship and subsequently abducted en masse by these vessels.”
-                  
-                  “The Thargoids have been capturing escape pods for years, but now it seems to have become a strategic priority. Perhaps they view ‘harvesting’ us in the same way as obtaining meta-alloys from barnacle sites. We can only imagine what unpleasant intentions they have for living human specimens.”</p>
-            </div>
+        <div id="sidebar-section-account" class="section">
+            <header class="section-header">Account</header>
+            <button>Profile</button>
+            <button>Squadrone</button>
         </div>
+        <div id="sidebar-section-software" class="section">
+            <header class="section-header">Software</header>
+            <button>Elite Dangerous</button>
+            <button onclick="loadPage('about.html')" style="display:none">About</button>
+        </div>
+    </aside>
+
+    <main id="main">
     </main>
 
+    <script type="application/javascript">
+        $('#header').load('header.html');
 
+        // TODO Change the loading, so that it stores the page and does not reload if the user clicks on the same button twice
+        // TODO Highlight the current Page in the Sidebar, so that the user can see the selected page visually
+        function loadPage(page) {
+            $('#main').load(page);
+        }
 
+        loadPage('home.html');
 
-
-
-    <script src="js/preloader.js"></script>
+    </script>
+    
 </body>
-
 </html>

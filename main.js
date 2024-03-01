@@ -30,10 +30,10 @@ let win
 // Sets the protocol for ED Squadrone Tracker
 if (process.defaultApp) {
     if (process.argv.length >= 2) {
-      app.setAsDefaultProtocolClient('ed-squadrone-tracker', process.execPath, [path.resolve(process.argv[1])])
+      app.setAsDefaultProtocolClient('edst', process.execPath, [path.resolve(process.argv[1])])
     }
 } else {
-    app.setAsDefaultProtocolClient('ed-squadrone-tracker')
+    app.setAsDefaultProtocolClient('edst')
 }
 
 // Checks if the App is the first/only instance of it
@@ -151,31 +151,6 @@ async function loadJournal() {
                 commanderInformation.stationName = jsonData.StationName;
                 win.webContents.send('journal-event-Docked', jsonData) // Send "Docked" event to the frontend
 
-                // Send a notification about the docking
-                // TODO Implement "windows-notification-state" for checking if the notification would be visible
-                // TODO Implement "electron-windows-notifications" and "electron-windows-interactive-notifications" for better notifications
-                /*new Notification({
-                    toastXml: `
-                    <toast launch="ed-squadrone-tracker:action=station&amp;marketId=${jsonData.MarketID}" activationType="protocol">
-                        <visual>
-                            <binding template="ToastGeneric">
-                                <text>ED Squadrone Tracker</text>
-                                <text>Docked at ${jsonData.StationName}</text>
-                            </binding>
-                        </visual>
-                        <actions>
-                            <action
-                                content="Open in App"
-                                arguments="ed-squadrone-tracker:action=viewDetails&amp;contentId=351"
-                                activationType="protocol"/>
-    
-                            <action
-                                content="Open on Inara"
-                                arguments="ed-squadrone-tracker:action=remindlater&amp;contentId=351"
-                                activationType="protocol"/>
-                        </actions>
-                    </toast>`
-                }).show()*/
             }
             // Handler if "Undocked" event occured
             else if (jsonData.event === 'Undocked') {
@@ -213,13 +188,15 @@ try {
     filesFound = false;
 }
 
-if(process.env.EDST !== 'developer') app.applicationMenu = null; // TODO fix implementation to make it work!!!
+if(process.env.EDST != 'developer') { // TODO fix implementation to make it work!!!
+    //app.applicationMenu = null;
+}
 
 // Sets the app's about menu
 app.setAboutPanelOptions({
     applicationName: 'ED Squadrone Tracker',
-    applicationVersion: 'V0.0.1-beta1',
-    copyright: 'Copyright 2023 Kejax & Fliegevieh',
+    applicationVersion: 'v' + process.env.npm_package_version,
+    copyright: 'Copyright 2024 Kejax & EDDS Team',
     website: 'https://github.com/Kejax/ED-Squadrone-Tracker'
 })
 
@@ -228,14 +205,18 @@ const createWindow = () => {
     const win = new BrowserWindow({
         width: 1920,
         height: 1080,
+        minHeight: 500,
+        minWidth: 1000,
         icon: 'img/ed-squadrone-tracker-transparent.png',
         //autoHideMenuBar: true,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js')
         },
+        titleBarStyle: 'hidden',
         titleBarOverlay: {
-            color: "#0000FF00",
-            height: 50
+            color: "#303030",
+            symbolColor: "#FFFFFF",
+            height: 35
         }
     })
 
@@ -291,6 +272,8 @@ if (gotTheLock) {
         
         // IPC Handling between renderer and main
         ipcMain.handle('ping', () => icon.toBitmap()); // Just for fun and such
+
+        ipcMain.handle('openAboutPanel', (data) => app.showAboutPanel())
         
         ipcMain.handle('setInaraApiKey', (_event, value) => settings.setSync('inaraApiKey', value))
         ipcMain.handle('getInaraApiKey', () => {return settings.getSync('inaraApiKey')})

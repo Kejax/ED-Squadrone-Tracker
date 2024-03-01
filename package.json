@@ -1,7 +1,7 @@
 {
   "name": "ed-squadrone-tracker",
   "productName": "ED Squadrone Tracker",
-  "version": "0.0.1-alpha1",
+  "version": "0.0.1-alpha2",
   "description": "CMDR Tracker for Elite Dangerous",
   "main": "main.js",
   "repository": {
@@ -33,7 +33,7 @@
     "chokidar": "^3.5.3",
     "electron-settings": "^4.0.2",
     "electron-squirrel-startup": "^1.0.0",
-    "jquery": "^3.7.0",
+    "jquery": "^3.7.1",
     "tail": "^2.2.6",
     "update-electron-app": "^2.0.1"
   }
