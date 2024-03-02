@@ -16,6 +16,8 @@ const readline = require('readline');
 const { Tail } = require('tail');
 const chokidar = require('chokidar');
 
+const { EliteJournalWatcher } = require('./elite-journal.js');
+
 const { Commander } = require('./models.js');
 const { InaraHandler } = require('./inaraHandler.js');
 
@@ -56,141 +58,11 @@ if (!gotTheLock) {
     })
 }
 
-// Get the latest journal file
-journalPath = path.join(os.homedir(), 'Saved Games/Frontier Developments/Elite Dangerous');
+const journalWatcher = new EliteJournalWatcher();
 
-filesFound = false
-var tail;
-var currentJournalFile;
+journalWatcher.start();
 
-var commanderInformation
-const inaraHandler = new InaraHandler();
-
-// Function for loading the latest Journal
-// TODO Move journal reading, loading, etc. to a sub module
-async function loadJournal() {
-    if (true) {
-
-        // Tries to find the latest Journal
-        files = fs.readdirSync(journalPath)
-    
-        files = files.filter(e => e.startsWith('Journal.'))
-        files.sort();
-        files.reverse();
-
-        if (files[0] === currentJournalFile) {
-            return
-        }
-
-        currentJournalFile = files[0];
-
-        if (tail) {
-            tail.unwatch();
-        }
-
-        const fileStream = fs.createReadStream(path.join(journalPath, files[0]));
-        const rl = readline.createInterface({
-            input: fileStream,
-            crlfDelay: Infinity
-        });
-
-        // Load the history of the content file if tracker was started after the game start
-        for await (const line of rl) {
-            pastData = JSON.parse(line);
-            if (pastData.event === 'Commander') {
-                commanderInformation = new Commander(pastData.Name, pastData.FID)
-            } else if (pastData.event === 'Location') {
-                commanderInformation.starsytemName = pastData.StarSystem;
-                if (pastData.Docked) {
-                    commanderInformation.stationname = pastData.StationName;
-                }
-            } else if (pastData.event === 'FSDJump') {
-                commanderInformation.starsytemName = pastData.StarSystem;
-            } else if (pastData.event === 'Docked') {
-                commanderInformation.stationName = pastData.StationName;
-            } else if (pastData.event === 'Undocked') {
-                commanderInformation.stationName = undefined
-            } else if (pastData.event === 'CarrierJump') {
-                commanderInformation.starsystemName = pastData.SystemName;
-            }
-        }
-        // Close the filestream for safety
-        fileStream.close()
-        
-        // Creates a new Tail for the latest Journal
-        tail = new Tail(path.join(journalPath, files[0]));
-
-        // A new event occured in the journal
-        tail.on('line', (data) => {
-            jsonData = JSON.parse(data)
-
-            // Send the event to the frontend, whatever event occured
-            win.webContents.send('journal-event', jsonData)
-            
-            // Handler if "MissionAccepted" event occured
-            if (jsonData.event === "MissionAccepted") {
-                // Convert data to INARA input json
-                inaraHandler.addMissionAcceptedEvent(jsonData);
-
-                inaraHandler.sendEvents(settings.getSync('inaraApiKey'));
-            }
-
-            // Handler if "Location" event occured
-            if (jsonData.event === 'Location') {
-                commanderInformation.starsystemName = jsonData.StarSystem;
-                if (jsonData.Docked) {
-                    commanderInformation.stationName = jsonData.StationName;
-                }
-            }
-            // Handler if "FSDJump" event occured
-            else if (jsonData.event === 'FSDJump') {
-                commanderInformation.starsystemName = jsonData.StarSystem;
-            }
-            // Handler if "Docked" event occured
-            else if (jsonData.event === "Docked") {
-                commanderInformation.stationName = jsonData.StationName;
-                win.webContents.send('journal-event-Docked', jsonData) // Send "Docked" event to the frontend
-
-            }
-            // Handler if "Undocked" event occured
-            else if (jsonData.event === 'Undocked') {
-                commanderInformation.stationname = undefined;
-            }
-            // Handler if "CarrierJump" event occured
-            else if (jsonData.event === 'CarrierJump') {
-                commanderInformation.starsystemName = jsonData.StarSystem;
-            }
-
-        })
-    
-        return true;
-    }
-    // } catch (error) {
-    //     //if (error.code === 'ENOENT') {
-    //     return false
-    // }
-}
-
-// Loads the latest journal
-try {
-    filesFound = loadJournal();
-
-    // Add a directory watcher that reloads the journal (if app is running overnight or 500k events have been reached)
-    const JournalPathWatcher = chokidar.watch('.', {
-        cwd: journalPath
-    });
-    JournalPathWatcher.on('add', (path) => {
-        if (path.startsWith('Journal.')) {
-            loadJournal()
-        }
-    })
-} catch (error) {
-    filesFound = false;
-}
-
-if(process.env.EDST != 'developer') { // TODO fix implementation to make it work!!!
-    //app.applicationMenu = null;
-}
+journalWatcher.on('Commander', (data) => {console.log(data.Name)});
 
 // Sets the app's about menu
 app.setAboutPanelOptions({
@@ -243,7 +115,7 @@ if (gotTheLock) {
 
         // Create a tray with the icon 'tray.png'
         const trayIcon = nativeImage.createFromPath(path.join(__dirname, 'img/ed-squadrone-tracker-tray.png'));
-        tray = new Tray(trayIcon);
+        const tray = new Tray(trayIcon);
 
         // Add window show functionality on double click tray
         tray.on('double-click', (event, bounds) => {
@@ -260,7 +132,7 @@ if (gotTheLock) {
             { type: 'separator' },
             { label: "About", type: 'normal', role: 'about' },
             { type: 'separator'},
-            { label: 'Quit EDDB', type: 'normal', click: () => {
+            { label: 'Quit Squadrone Tracker', type: 'normal', click: () => {
                 win.destroy();
                 app.quit()
             } },
